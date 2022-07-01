@@ -1,7 +1,18 @@
 package com.jia.junit.interfaces.item.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
-import com.jia.junit.interfaces.item.entity.ItemEntity;
+public interface ItemService {
+	/**
+	 * 测试: 根据索引字段更新数据
+	 */
+	void testIndex();
 
-public interface ItemService extends IService<ItemEntity> {
+	/**
+	 * 测试: 根据非索引字段更新数据
+	 */
+	void testNoIndex();
+
+	/**
+	 * 测试: 死锁
+	 */
+	void testDeadLock();
 }
