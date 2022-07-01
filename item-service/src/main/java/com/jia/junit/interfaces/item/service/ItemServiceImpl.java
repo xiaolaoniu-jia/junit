@@ -1,6 +1,7 @@
 package com.jia.junit.interfaces.item.service;
 
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.jia.junit.infrastructure.plugin.IdWorker;
 import com.jia.junit.interfaces.item.dao.ItemDao;
 import com.jia.junit.interfaces.item.entity.ItemEntity;
 import lombok.extern.slf4j.Slf4j;
@@ -16,6 +17,9 @@ public class ItemServiceImpl implements ItemService {
 
 	@Autowired
 	ItemDao itemDao;
+
+	@Autowired
+	IdWorker idWorker;
 
 	@Autowired
 	private TransactionDefinition transactionDefinition;

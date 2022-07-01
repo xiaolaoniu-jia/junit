@@ -1,4 +1,4 @@
-package com.jia.junit.configuration;
+package com.jia.junit.infrastructure.config;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Configuration;
