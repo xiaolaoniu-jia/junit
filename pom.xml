@@ -10,7 +10,6 @@
     <version>1.0-SNAPSHOT</version>
 
     <modules>
-        <module>order-service</module>
-        <module>item-service</module>
+        <module>junit-parent</module>
     </modules>
 </project>
