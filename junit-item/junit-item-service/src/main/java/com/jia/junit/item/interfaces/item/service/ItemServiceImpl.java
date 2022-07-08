@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.jia.junit.item.infrastructure.plugin.IdWorker;
 import com.jia.junit.item.interfaces.item.dao.ItemDao;
 import com.jia.junit.item.interfaces.item.entity.ItemEntity;
+import com.jia.junit.order.feign.JunitOrderFeignClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
@@ -20,6 +21,9 @@ public class ItemServiceImpl implements ItemService {
 
 	@Autowired
 	IdWorker idWorker;
+
+	@Autowired
+	JunitOrderFeignClient orderFeignClient;
 
 	@Autowired
 	private TransactionDefinition transactionDefinition;
@@ -82,5 +86,13 @@ public class ItemServiceImpl implements ItemService {
 	@Override
 	public void testDeadLock() {
 
+	}
+
+	/**
+	 * 测试: OpenFeign整合Sentinel
+	 */
+	@Override
+	public void testOpenFeign() {
+		orderFeignClient.testOpenFeign();
 	}
 }

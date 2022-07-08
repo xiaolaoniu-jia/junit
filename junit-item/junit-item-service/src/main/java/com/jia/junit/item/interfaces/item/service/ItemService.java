@@ -15,4 +15,9 @@ public interface ItemService {
 	 * 测试: 死锁
 	 */
 	void testDeadLock();
+
+	/**
+	 * 测试: OpenFeign整合Sentinel
+	 */
+	void testOpenFeign();
 }
