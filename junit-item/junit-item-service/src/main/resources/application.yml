@@ -8,6 +8,67 @@ spring:
     username: root
     password: 123456
   cloud:
+    stream:
+      default-binder: kafka
+      binders:
+        kafka:
+          type: kafka
+          default-candidate: true
+          environment:
+            spring:
+              cloud:
+                stream:
+                  kafka:
+                    binder:
+                      brokers: 123.56.117.108:9092
+        rabbit:
+          type: rabbit
+          default-candidate: true
+          environment:
+            spring:
+              rabbitmq:
+                addresses: 123.56.117.108
+                port: 5672
+                username: dell
+                password: dell
+                virtual-host: /
+      bindings:
+        # 测试kafka消费者
+        testKafkaConsumer-in-0:
+          destination: test-kafka-topic
+          content-type: text/plain
+          group: test-kafka-in-group
+          consumer:
+            concurrency: 12
+            max-attempts: 3
+            nativeEncoding: false
+        # 测试kafka生产者
+        testKafkaProducer-out-0:
+          destination: test-kafka-topic
+          content-type: text/plain
+          producer:
+            partitionCount: 12
+            nativeEncoding: false
+        # 测试rabbit消费者
+        testRabbitConsumer-in-0:
+          destination: test-rabbit-topic
+          content-type: text/plain
+          group: test-rabbit-in-group
+          binder: rabbit
+          consumer:
+            concurrency: 12
+            max-attempts: 3
+            nativeEncoding: false
+        # 测试rabbit生产者
+        testRabbitProducer-out-0:
+          destination: test-rabbit-topic
+          content-type: text/plain
+          binder: rabbit
+          producer:
+            partitionCount: 12
+            nativeEncoding: false
+      function:
+        definition: testRabbitConsumer;testKafkaConsumer
     sentinel:
       transport:
         dashboard: localhost:8080

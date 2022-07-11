@@ -1,6 +1,8 @@
 package com.jia.junit.item.interfaces.item.service;
 
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.jia.junit.item.application.producer.TestKafkaProducer;
+import com.jia.junit.item.application.producer.TestRabbitProducer;
 import com.jia.junit.item.infrastructure.plugin.IdWorker;
 import com.jia.junit.item.interfaces.item.dao.ItemDao;
 import com.jia.junit.item.interfaces.item.entity.ItemEntity;
@@ -24,6 +26,12 @@ public class ItemServiceImpl implements ItemService {
 
 	@Autowired
 	JunitOrderFeignClient orderFeignClient;
+
+	@Autowired
+	TestRabbitProducer testRabbitProducer;
+
+	@Autowired
+	TestKafkaProducer testKafkaProducer;
 
 	@Autowired
 	private TransactionDefinition transactionDefinition;
@@ -94,5 +102,29 @@ public class ItemServiceImpl implements ItemService {
 	@Override
 	public void testOpenFeign() {
 		orderFeignClient.testOpenFeign();
+	}
+
+	/**
+	 * 测试: rabbitmq
+	 */
+	@Override
+	public void testRabbit() {
+		ItemEntity itemEntity = new ItemEntity();
+		itemEntity.setId(1L);
+		itemEntity.setName("name");
+		itemEntity.setSeqno(1);
+		testRabbitProducer.sendMessage(itemEntity);
+	}
+
+	/**
+	 * 测试: kafka
+	 */
+	@Override
+	public void testKafka() {
+		ItemEntity itemEntity = new ItemEntity();
+		itemEntity.setId(1L);
+		itemEntity.setName("name");
+		itemEntity.setSeqno(1);
+		testKafkaProducer.sendMessage(itemEntity);
 	}
 }

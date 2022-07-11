@@ -55,4 +55,17 @@ public class ItemController {
 	public void testOpenFeign() {
 		itemService.testOpenFeign();
 	}
+
+	//************************************************
+	// spring cloud stream相关
+	//************************************************
+	@GetMapping("/test/rabbit")
+	public void testRabbit() {
+		itemService.testRabbit();
+	}
+
+	@GetMapping("/test/kafka")
+	public void testKafka() {
+		itemService.testKafka();
+	}
 }

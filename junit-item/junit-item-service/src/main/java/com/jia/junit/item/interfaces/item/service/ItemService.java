@@ -20,4 +20,14 @@ public interface ItemService {
 	 * 测试: OpenFeign整合Sentinel
 	 */
 	void testOpenFeign();
+
+	/**
+	 * 测试: rabbitmq
+	 */
+	void testRabbit();
+
+	/**
+	 * 测试: kafka
+	 */
+	void testKafka();
 }
